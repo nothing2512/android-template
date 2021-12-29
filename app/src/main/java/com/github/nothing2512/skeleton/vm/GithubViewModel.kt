@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.nothing2512.skeleton.data.entities.UserEntities
 import com.github.nothing2512.skeleton.data.repositories.GithubRepository
+import com.github.nothing2512.skeleton.utilities.launchMain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class GithubViewModel @Inject internal constructor(private val githubRepository:
     val users: LiveData<ArrayList<UserEntities>> = githubRepository.users
 
     fun getUsers() {
-        viewModelScope.launch {
+        launchMain {
             githubRepository.getUsers()
         }
     }

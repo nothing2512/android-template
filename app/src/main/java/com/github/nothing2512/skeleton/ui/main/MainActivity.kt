@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.github.nothing2512.skeleton.R
 import com.github.nothing2512.skeleton.databinding.ActivityMainBinding
+import com.github.nothing2512.skeleton.utilities.launchMain
 import com.github.nothing2512.skeleton.vm.GithubViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        CoroutineScope(Dispatchers.Main).launch {
+        launchMain {
             githubViewModel.getUsers()
             githubViewModel.users.observe(this@MainActivity) {
                 binding.content.text = "Okay"
